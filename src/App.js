@@ -10,37 +10,80 @@ export default function App() {
 
 function Mentor() {
 
-
   return (
-  <div>
-
-  <h1 className = "bg-slate-500">Notifications 3 Mark all as read</h1>
-
-  <ul>
-      <li>Mark Webber reacted to your recent post My first tournament today!
-      1m ago</li>
-
-      <li>Angela Gray followed you
-      5m ago</li>
-
-      <li>Jacob Thompson has joined your group Chess Club
-      1 day ago</li>
-
-      <li>Rizky Hasanuddin sent you a private message
-      5 days ago Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and 
-      I'm already having lots of fun and improving my game.
-      </li>
-
-      
-      <li>Kimberly Smith commented on your picture
-      1 week ago</li>
-
-      <li>Nathan Peterson reacted to your recent post 5 end-game strategies to increase your win rate
-      2 weeks ago</li>
-
-      <li>Anna Kim left the group Chess Club
-      2 weeks ago</li>
-  </ul>
-  </div>
+    <div>
+      <User ></User>
+    </div>
   );
+}
+
+
+function User(){
+  const users = [
+    {
+        avatar: 'assets/images/avatar-mark-webber.webp',
+        name: 'Mark Webber',
+        activity: 'Reacted to your recent post',
+        interaction:  'My first tournament today',
+        time: '1m ago'
+    },
+    {
+        avatar: 'assets/images/avatar-angela-gray.webp',
+        name: 'Angela Gray',
+        activity: 'followed you',
+        time: '5m ago'
+    },
+    {
+        avatar: 'assets/images/avatar-jacob-thompson.webp',
+        name: 'Jacob Thompson',
+        activity: 'has joined your group',
+        interaction:  'Chess Club',
+        time: '1day ago'
+    },
+    {
+        avatar: 'assets/images/avatar-rizky-hasanuddin.webp',
+        name: 'Rizky Hasanuddin',
+        activity: 'sent you a private message',
+        privateMessage:  'Hello thanks for setting up the Chess Club. I\'ve been a member for a few weeks now and I\'m already having lots of fun and improving my game.',
+        time: '5days ago'
+    },
+    {
+        avatar: 'assets/images/avatar-kimberly-smith.webp',
+        name: 'Kimberly Smith',
+        activity: 'commented on your picture',
+        time: '1weeks ago'
+    },
+    {
+        avatar: 'assets/images/avatar-nathan-peterson.webp',
+        name: 'Nathan Peterson',
+        activity: 'Reacted to your recent post',
+        interaction:  '5end-game strategies to increase you win rate',
+        time: '2weeks ago'
+    },
+    {   
+        avatar: 'assets/images/avatar-anna-kim.webp',
+        name: 'Anna Kim',
+        activity: 'left the group',
+        interaction:  'Chess Club',
+        time: '2weeks ago'
+    },
+    {   
+        avatar: 'assets/images/avatar-anna-kim.webp',
+        name: 'Anna Kim',
+        activity: 'left the group',
+        interaction:  'Chess Club',
+        time: '2weeks ago'
+    },]
+
+
+  let content = [];
+  for (let item of users) {
+    content.push(<li>
+      <img src='assets/images/avatar-anna-kim.webp' alt="Avatar"></img>
+      <p>{item.name} {item.activity} {item.interaction}
+      </p>
+    </li>);
+  }
+  return <ul>{content}</ul>;
+
 }
