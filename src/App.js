@@ -11,64 +11,57 @@ export default function App() {
 function Mentor() {
 
   return (
-    <div>
-      <User ></User>
-    </div>
-  );
+    <div className="grid h-screen place-items-center">
+      <User></User>
+    </div>    
+  )
 }
 
 
 function User(){
   const users = [
     {
-        avatar: 'assets/images/avatar-mark-webber.webp',
+        avatar: 'avatar-mark-webber.webp',
         name: 'Mark Webber',
         activity: 'Reacted to your recent post',
         interaction:  'My first tournament today',
         time: '1m ago'
     },
     {
-        avatar: 'assets/images/avatar-angela-gray.webp',
+        avatar: 'avatar-angela-gray.webp',
         name: 'Angela Gray',
         activity: 'followed you',
         time: '5m ago'
     },
     {
-        avatar: 'assets/images/avatar-jacob-thompson.webp',
+        avatar: 'avatar-jacob-thompson.webp',
         name: 'Jacob Thompson',
         activity: 'has joined your group',
         interaction:  'Chess Club',
         time: '1day ago'
     },
     {
-        avatar: 'assets/images/avatar-rizky-hasanuddin.webp',
+        avatar: 'avatar-rizky-hasanuddin.webp',
         name: 'Rizky Hasanuddin',
         activity: 'sent you a private message',
         privateMessage:  'Hello thanks for setting up the Chess Club. I\'ve been a member for a few weeks now and I\'m already having lots of fun and improving my game.',
         time: '5days ago'
     },
     {
-        avatar: 'assets/images/avatar-kimberly-smith.webp',
+        avatar: 'avatar-kimberly-smith.webp',
         name: 'Kimberly Smith',
         activity: 'commented on your picture',
         time: '1weeks ago'
     },
     {
-        avatar: 'assets/images/avatar-nathan-peterson.webp',
+        avatar: 'avatar-nathan-peterson.webp',
         name: 'Nathan Peterson',
         activity: 'Reacted to your recent post',
         interaction:  '5end-game strategies to increase you win rate',
         time: '2weeks ago'
     },
     {   
-        avatar: 'assets/images/avatar-anna-kim.webp',
-        name: 'Anna Kim',
-        activity: 'left the group',
-        interaction:  'Chess Club',
-        time: '2weeks ago'
-    },
-    {   
-        avatar: 'assets/images/avatar-anna-kim.webp',
+        avatar: 'avatar-anna-kim.webp',
         name: 'Anna Kim',
         activity: 'left the group',
         interaction:  'Chess Club',
@@ -78,12 +71,17 @@ function User(){
 
   let content = [];
   for (let item of users) {
-    content.push(<li>
-      <img src='assets/images/avatar-anna-kim.webp' alt="Avatar"></img>
-      <p>{item.name} {item.activity} {item.interaction}
-      </p>
-    </li>);
+    content.push(
+      <li className="ml-5 font-extralight hover:bg-slate-300">
+        <div className="pb-4">
+          <img className="float-left pr-4" src={item.avatar} alt="Avatar" width="65" height="65"></img>
+          <p className="text-xl "><b>{item.name}</b> {item.activity} <i>{item.interaction}</i> </p>
+          <p className="pl-16">{item.time}</p>
+        </div> 
+      </li>
+    );
   }
-  return <ul>{content}</ul>;
-
+  return (
+    <ul className="list-none hover:list-disc align-middle">{content}</ul>
+  )
 }
