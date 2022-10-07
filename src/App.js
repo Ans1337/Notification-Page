@@ -11,9 +11,10 @@ export default function App() {
 function Mentor() {
 
   return (
-    <div className="grid h-screen place-items-center">
-      <User></User>
-    </div>    
+    // <div className="grid h-screen place-items-center rounded-lg border-2 border-red-500">
+      <div className="grid h-screen place-items-center">
+        <User></User>
+      </div>
   )
 }
 
@@ -77,6 +78,9 @@ function User(){
           <img className="float-left pr-4" src={item.avatar} alt="Avatar" width="65" height="65"></img>
           <p className="text-xl "><b>{item.name}</b> {item.activity} <i>{item.interaction}</i> </p>
           <p className="pl-16">{item.time}</p>
+          <div className="pl-20">
+            {item.privateMessage ? <p className="border-2 border-gray-400 hover:bg-blue-100">{item.privateMessage}</p> : <p></p>}
+          </div>
         </div> 
       </li>
     );
