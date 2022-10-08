@@ -9,15 +9,12 @@ export default function App() {
 }
 
 function Mentor() {
-
   return (
-    // <div className="grid h-screen place-items-center rounded-lg border-2 border-red-500">
-      <div className="grid h-screen place-items-center">
+      <div className="grid h-screen place-items-center bg-slate-400">
         <User></User>
       </div>
   )
 }
-
 
 function User(){
   const users = [
@@ -69,23 +66,22 @@ function User(){
         time: '2weeks ago'
     },]
 
-
   let content = [];
   for (let item of users) {
     content.push(
-      <li className="ml-5 font-extralight hover:bg-slate-300">
+      <li className="font-extralight">
         <div className="pb-4">
           <img className="float-left pr-4" src={item.avatar} alt="Avatar" width="65" height="65"></img>
-          <p className="text-xl "><b>{item.name}</b> {item.activity} <i>{item.interaction}</i> </p>
+          <p className="text-xl"><b>{item.name}</b> {item.activity} <i>{item.interaction}</i> </p>
           <p className="pl-16">{item.time}</p>
-          <div className="pl-20">
-            {item.privateMessage ? <p className="border-2 border-gray-400 hover:bg-blue-100">{item.privateMessage}</p> : <p></p>}
+          <div className="pl-16">
+            {item.privateMessage ? <p className="p-6 text-justify border-2 border-gray-400 hover:bg-blue-100">{item.privateMessage}</p> : <p></p>}
           </div>
         </div> 
       </li>
     );
   }
   return (
-    <ul className="list-none hover:list-disc align-middle">{content}</ul>
+    <ul className="place-items-center align-middle hover:bg-slate-300 p-2 border-2 rounded-lg bg-white w-4/12" >{content}</ul>
   )
 }
