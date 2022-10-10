@@ -69,19 +69,23 @@ function User(){
   let content = [];
   for (let item of users) {
     content.push(
-      <li className="font-extralight">
-        <div className="pb-4">
-          <img className="float-left pr-4" src={item.avatar} alt="Avatar" width="65" height="65"></img>
-          <p className="text-xl"><b>{item.name}</b> {item.activity} <i>{item.interaction}</i> </p>
-          <p className="pl-16">{item.time}</p>
-          <div className="pl-16">
-            {item.privateMessage ? <p className="p-6 text-justify border-2 border-gray-400 hover:bg-blue-100">{item.privateMessage}</p> : <p></p>}
+      <li className="font-extralight hover:bg-slate-400">
+        <div className="p-4">
+          <img className="float-left" src={item.avatar} alt="Avatar" width="65" height="65"></img>
+          <div>
+            <p className="text-xl">
+              <b>{item.name}</b> {item.activity} <i>{item.interaction}</i> 
+            </p>
+            <p className="pl-16">{item.time}</p>
+            <div className="pl-16">
+              {item.privateMessage ? <p className="p-4 text-justify border-2 border-gray-400 hover:bg-blue-100">{item.privateMessage}</p> : <p></p>}
+            </div>
           </div>
         </div> 
       </li>
     );
   }
-  return (
-    <ul className="place-items-center align-middle hover:bg-slate-300 p-2 border-2 rounded-lg bg-white w-4/12" >{content}</ul>
+  return (  
+      <ul className="place-items-center align-middle hover:bg-slate-300 p-4 border-2 rounded-lg bg-white w-4/12" >{content}</ul>
   )
 }
