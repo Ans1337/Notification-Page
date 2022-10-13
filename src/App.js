@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import "./styles.css";
 
 export default function App() {
@@ -10,6 +10,7 @@ export default function App() {
 }
 
 function User(){
+  const [notificationCount,setNotificationCount] = useState(0);
   let [userData,setUserData] = useState([{
     id: 1,
     avatar: 'avatar-mark-webber.webp',
@@ -68,6 +69,17 @@ function User(){
     time: '2weeks ago'
 },]);
 
+  function calculateCount() {
+    let temp = 0
+    for (let item of userData){
+      if(item.active === true)
+      {
+        temp = temp + 1;
+      }
+    }
+    setNotificationCount(temp);
+  }
+  
   function readNotification() {
     for (let item of userData)
     {
@@ -79,33 +91,36 @@ function User(){
     setUserData([...userData]);
   }
 
-  
-  let content = [];
-  for (let item of userData) {
-    content.push(
-        <li className={`font-extralight ${item.active === true ? 'bg-red-700' : ''}`}>
-          <div className="p-6 hover:bg-slate-500">
-            <img className="float-left pr-4" src={item.avatar} alt="Avatar" width="65" height="65"></img>
-            <div>
-              <p> <b>{item.name}</b> {item.activity} <i>{item.interaction}</i></p>
-              <p className="pl-16">{item.time}</p>
-              <div className="pl-16">
-                {item.privateMessage ? <p className="p-3 text-justify border-2 border-gray-400 hover:bg-blue-100">{item.privateMessage}</p> : <></>}
-              </div>
-            </div>
-          </div> 
-        </li>
-    );
-  }
+  useEffect(() => {
+    calculateCount();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+    
+  const listItems = userData.map((userData) =>  
+    <li key={userData.id} className={`font-extralight ${userData.active === true ? 'bg-red-700' : ''}`}>
+      <div className="p-6 hover:bg-slate-500">
+        <img className="float-left pr-4" src={userData.avatar} alt="Avatar" width="65" height="65"></img>
+        <div>
+          <p> <b>{userData.name}</b> {userData.activity} <i>{userData.interaction}</i></p>
+          <p className="pl-16">{userData.time}</p>
+          <div className="pl-16">
+            {userData.privateMessage ? <p className="p-3 text-justify border-2 border-gray-400 hover:bg-blue-100">{userData.privateMessage}</p> : <></>}
+          </div>
+        </div>
+      </div> 
+    </li>
+  )
+
   return ( 
       <ul className="place-items-center align-middle hover:bg-slate-300 p-4 border-2 rounded-lg bg-white w-5/12" >
         <li>
           <div className="p-12">
-            <p className="float-left text-xl">Notification 3</p>
-            <button onClick={readNotification} className="float-right flex text-xl">Mark all as read</button>
+            <p className="float-left text-xl">Notification {notificationCount}</p>
+            <button onClick={function(event){ readNotification(); calculateCount()}}  className="float-right flex text-xl">Mark all as read</button>
           </div>
         </li>
-        {content}
+        {listItems}
       </ul>
   )
 }
