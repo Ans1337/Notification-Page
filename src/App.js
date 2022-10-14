@@ -3,8 +3,10 @@ import "./styles.css";
 
 export default function App() {
   return (
-    <div className="App grid h-screen place-items-center bg-slate-400">
-      <User></User>
+    <div className="grid h-screen place-items-center ">
+      <div className="w-5/12">
+        <User></User>
+      </div>
     </div>
   );
 }
@@ -98,30 +100,37 @@ function User(){
 
     
   const listItems = userData.map((userData) =>  
-    <li key={userData.id} className={`font-extralight ${userData.active === true ? 'bg-red-700' : ''}`}>
-      <div className="p-6 hover:bg-slate-500">
+    <li key={userData.id}>
+    <div className="pb-2">
+      <div className={`p-6 ${userData.active === true ? 'rounded-xl bg-sky-200' : ''}`}>
         <img className="float-left pr-4" src={userData.avatar} alt="Avatar" width="65" height="65"></img>
         <div>
           <p> <b>{userData.name}</b> {userData.activity} <i>{userData.interaction}</i></p>
-          <p className="pl-16">{userData.time}</p>
+          <p className="pl-16 pb-2">{userData.time}</p>
           <div className="pl-16">
-            {userData.privateMessage ? <p className="p-3 text-justify border-2 border-gray-400 hover:bg-blue-100">{userData.privateMessage}</p> : <></>}
+            {userData.privateMessage ? <p className="p-2 text-justify rounded-lg border-2 border-gray-400 hover:bg-blue-100">{userData.privateMessage}</p> : <></>}
           </div>
         </div>
       </div> 
+    </div>
     </li>
   )
 
   return ( 
-      <ul className="place-items-center align-middle hover:bg-slate-300 p-4 border-2 rounded-lg bg-white w-5/12" >
-        <li>
-          <div className="p-12">
-            <p className="float-left text-xl">Notification {notificationCount}</p>
-            <button onClick={function(event){ readNotification(); calculateCount()}}  className="float-right flex text-xl">Mark all as read</button>
-          </div>
-        </li>
-        {listItems}
-      </ul>
+      // <ul className="place-items-center align-middle hover:bg-slate-300 p-4 border-2 rounded-lg bg-white w-8/12" >
+      <div className="p-4 border-2 bg-white rounded-xl" >
+       <ul>
+         <li>
+           <div className="pb-10">
+             <p className="float-left text-2xl font-bold">Notification 
+              <span className="rounded-lg bg-blue-700 text-white">{notificationCount}</span>
+             </p>
+             <button onClick={function(event){ readNotification(); calculateCount()}}  className="float-right flex text-xl hover:text-blue-400">Mark all as read</button>
+           </div>
+         </li>
+         {listItems}
+        </ul>
+      </div>
   )
 }
 
